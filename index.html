@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Project Front-End</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Noto+Sans+Thai:wght@100..900&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+            <img src="/KUTC.png" alt="Logo" width="30" class="d-inline-block align-text-top">
+                หน้าหลักแดชบอร์ด
+            </a>
+            <span class="navbar-text" >
+                หน้าเว็บนี้เป็นส่วนหนึ่งของการเรียนการสอนเท่านั้น
+            </span>
+        </div>
+    </nav>
+
+    <div class="main">
+        <div class="card">
+            <div class="card-header text-center ">
+                โปรแกรมการคำนวนเกรดอัตโนมัติ
+            </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="" class="form-label">
+                            คะแนนกลางภาค
+                        </label>
+                        <input 
+                            type="number" 
+                            class="form-control"
+                            id="midterm"
+                            placeholder="กรุณาระบุคะแนนกลางภาค"
+                            min="0" max="30"
+                            >
+                        <div class="form-text">
+                            คะแนนสอบกลางภาคสามารถกรอกได้ไม่เกิน 30 คะแนน
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="" class="form-label">
+                            คะแนนปลายภาค
+                        </label>
+                        <input 
+                            type="number" 
+                            class="form-control"
+                            id="final"
+                            placeholder="กรุณาระบุคะแนนปลายภาค"
+                            min="0" max="50"
+                            >
+                        <div class="form-text">
+                            คะแนนสอบปลายภาคสามารถกรอกได้ไม่เกิน 50 คะแนน
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="" class="form-label">
+                            คะแนนจิตพิสัย
+                        </label>
+                        <input 
+                            type="number" 
+                            class="form-control"
+                            id="other"
+                            placeholder="กรุณาระบุคะแนนจิตพิสัย"
+                            min="0" max="20"
+                            >
+                        <div class="form-text">
+                            คะแนนจิตพิสัยสามารถกรอกได้ไม่เกิน 20 คะแนน
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <input 
+                        type="button" 
+                        value="คำนวนเกรด"
+                        class="btn btn-success"
+                        onclick=grade()
+                        >
+                    </div>
+                </div>
+            </div>
+            
+            <br>
+
+            <div class="result">
+                <div class="alert alert-success text-center" role="alert">
+                    <div>
+                        <h4 id="total" > คะแนนรวมของคุณคือ XXX </h4>
+                        <h5 id="grade"> ผลการเรียนของคุณคือ XXX</h5>
+                        <p id="detail" > รายละเอียดการแสดงผลเกรดของคุณ </p>
+                    </div>
+                </div>
+            </div>
+
+            
+                <div class="alert alert-primary" role="alert">
+                    <div>
+                        <h5>เงื่อนไขการแปลงคะแนน</h5>
+                        <pre>ถ้าคะแนนรวมมากกว่า 80 คะแนนขึ้นไป จะได้เกรด A
+ถ้าคะแนนรวมมากกว่า 70-80 คะแนน จะได้เกรด B
+ถ้าคะแนนรวมมากกว่า 60-70 คะแนน จะได้เกรด C
+ถ้าคะแนนรวมมากกว่า 50-60 คะแนน จะได้เกรด D
+ถ้าคะแนนรวมน้อยกว่า 50 คะแนน จะได้เกรด F</pre>
+                        <p> โดยที่คะแนนรวม เกิดจาก คะแนนการสอบกลางภาค รวมกับ คะแนนการสอบปลายภาค และรวมกับคะแนนจิตพิสัยในการมีส่วนร่วมในชั้นเรียน </p>
+                    </div>
+                </div>
+            
+        <footer class="py-3 my-4 border-top text-center">
+            จัดทำโดยนายอิทธิพล สมเสมอ รหัสนักศึกษา 630112418061 <br>
+            โปรแกรมนี้เป็นส่วนหนึ่งของรายวิชาการพัฒนาซอฟต์แวร์ด้วยเทคโนโลยี Front-End  <br>
+            ภาคเรียนที่ 1 ปีการศึกษา 2568 วิทยาลัยเทคินิคคูเมือง
+        </footer>        
+
+    
+    </div>
+    <script src="/script.js"></script>
+    
+</body>
+</html>
